@@ -2368,12 +2368,12 @@ export default class Exchange extends React.Component {
                       "" + deadline
                     ),
                     amountOfEth,
-                    "Sending funds to 🦄 exchange...",
+                    "Sending funds to exchange...",
                     receipt => {
                       this.setState({
                         amount: "",
                         loaderBarColor: "#4ab3f5",
-                        loaderBarStatusText: "Waiting for 🦄 exchange...",
+                        loaderBarStatusText: "Waiting for exchange...",
                         loaderBarClick: () => {
                           alert(i18n.t("exchange.idk"));
                         }
@@ -2594,7 +2594,7 @@ export default class Exchange extends React.Component {
                             console.log("approval", approval);
                             this.setState({
                               loaderBarColor: "#f5eb4a",
-                              loaderBarStatusText: "Approving 🦄 exchange..."
+                              loaderBarStatusText: "Approving exchange..."
                             });
 
                             let paramsObject = {
@@ -2642,7 +2642,7 @@ export default class Exchange extends React.Component {
                                       this.setState({
                                         loaderBarColor: "#4ab3f5",
                                         loaderBarStatusText:
-                                          "Waiting for 🦄 exchange...",
+                                          "Waiting for exchange...",
                                         ethBalanceAtStart: this.props
                                           .ethBalance,
                                         ethBalanceShouldBe: eventualEthBalance
@@ -2746,7 +2746,7 @@ export default class Exchange extends React.Component {
                           } else {
                             this.setState({
                               loaderBarColor: "#f5eb4a",
-                              loaderBarStatusText: "Waiting for 🦄 exchange...",
+                              loaderBarStatusText: "Waiting for exchange...",
                               ethBalanceAtStart: this.props.ethBalance,
                               ethBalanceShouldBe: eventualEthBalance
                             });
@@ -2830,7 +2830,7 @@ export default class Exchange extends React.Component {
                       this.setState({
                         amount: "",
                         loaderBarColor: "#42ceb2",
-                        loaderBarStatusText: "Approving 🦄 exchange...",
+                        loaderBarStatusText: "Approving exchange...",
                         loaderBarClick: () => {
                           alert(i18n.t("exchange.idk"));
                         }
@@ -2858,7 +2858,7 @@ export default class Exchange extends React.Component {
                               ethBalanceShouldBe: eventualEthBalance,
                               loaderBarColor: "#4ab3f5",
                               loaderBarStatusText:
-                                "Sending funds to 🦄 Exchange...",
+                                "Sending funds to Exchange...",
                               loaderBarClick: () => {
                                 alert(i18n.t("exchange.idk"));
                               }
@@ -2890,7 +2890,7 @@ export default class Exchange extends React.Component {
                         ethBalanceAtStart: this.props.ethBalance,
                         ethBalanceShouldBe: eventualEthBalance,
                         loaderBarColor: "#4ab3f5",
-                        loaderBarStatusText: "Sending funds to 🦄 Exchange...",
+                        loaderBarStatusText: "Sending funds to Exchange...",
                         loaderBarClick: () => {
                           alert(i18n.t("exchange.idk"));
                         }
