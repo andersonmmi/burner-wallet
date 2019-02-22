@@ -1631,7 +1631,7 @@ class App extends Component {
                             <Balance
                               icon={dai}
                               selected={selected}
-                              text={"DAI"}
+                              text={"EVXP"}
                               amount={this.state.daiBalance}
                               address={account}
                               dollarDisplay={dollarDisplay}
