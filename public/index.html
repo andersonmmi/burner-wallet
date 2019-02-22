@@ -15,50 +15,66 @@
       integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
       crossorigin="anonymous"
     />
-    <title>Burner</title>
-    <meta name="description" content="Trasfer xDai quickly then burn your private key." />
+    <title>EVEREX</title>
+    <meta name="description" content="Everex Wallet Demo" />
     <meta
       name="keywords"
-      content="dai, xdai, wallet, burner, crypto, ethereum, poa, payment, transactions"
+      content="everex, wallet, crypto, ethereum, poa, payment, transactions, demo"
     />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@austingriffith" />
-    <meta name="twitter:title" content="Burner" />
-    <meta name="twitter:description" content="Trasfer xDai quickly then burn your private key." />
+    <meta name="twitter:site" content="@everexio" />
+    <meta name="twitter:title" content="EVEREX" />
+    <meta name="twitter:description" content="Everex Wallet Demo" />
     <meta
       name="twitter:img:src"
-      content="https://xdai.io/burner-wallet-banner.png"
+      content="https://daks2k3a4ib2z.cloudfront.net/59157962bdb4300afa8771a9/5954988ec21883086b9489b9_EVX.png"
     />
-    <meta name="og:title" content="Burner" />
+    <meta name="og:title" content="EVEREX" />
     <meta name="og:type" content="website" />
-    <meta name="og:url" content="https://xdai.io" />
-    <meta name="og:image" content="https://xdai.io/burnercard2.jpg" />
-    <meta name="og:description" content="Trasfer xDai quickly then burn your private key." />
-    <meta name="og:site_name" content="Burner" />
+    <meta name="og:url" content="https://www.everex.io/" />
+    <meta
+      name="og:image"
+      content="https://daks2k3a4ib2z.cloudfront.net/59157962bdb4300afa8771a9/5954988ec21883086b9489b9_EVX.png"
+    />
+    <meta name="og:description" content="Everex Wallet Demo" />
+    <meta name="og:site_name" content="EVEREX" />
     <link
       href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css?family=Overpass" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Overpass"
+      rel="stylesheet"
+    />
   </head>
   <body style="background-color:#222222;text-align:'center'">
     <noscript> You need to enable JavaScript to run this app. </noscript>
     <div id="root">
       <div style="padding-top:60px;text-align:center;width:100%">
-
         <div>
-          <img src="whiteburn.png" style="max-width:25%;padding-bottom:5%"/>
-          <div style="text-align: center;padding-top:5%;width:100%;padding-left:20%">
-            <div style="width: 75%; height: 1px; background-color: rgb(68, 68, 68);">
-              <div id="firstLoaderBar" style="width: 5%; height: 1px; background-color: rgb(255, 255, 255); box-shadow: rgb(255, 255, 255) 0px 0px 2px, rgb(255, 255, 255) 0px 0px 2.66667px, rgb(255, 255, 255) 0px 0px 4px, rgb(255, 255, 255) 0px 0px 8px, rgb(255, 255, 255) 0px 0px 16px, rgb(255, 255, 255) 0px 0px 26.6667px, rgb(255, 255, 255) 0px 0px 80px;">
-              </div>
+          <img
+            src="Everex-EVX-icon.png"
+            style="max-width:25%;padding-bottom:5%"
+          />
+          <div
+            style="text-align: center;padding-top:5%;width:100%;padding-left:20%"
+          >
+            <div
+              style="width: 75%; height: 1px; background-color: rgb(68, 68, 68);"
+            >
+              <div
+                id="firstLoaderBar"
+                style="width: 5%; height: 1px; background-color: rgb(255, 255, 255); box-shadow: rgb(255, 255, 255) 0px 0px 2px, rgb(255, 255, 255) 0px 0px 2.66667px, rgb(255, 255, 255) 0px 0px 4px, rgb(255, 255, 255) 0px 0px 8px, rgb(255, 255, 255) 0px 0px 16px, rgb(255, 255, 255) 0px 0px 26.6667px, rgb(255, 255, 255) 0px 0px 80px;"
+              ></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div id="log" style="position:absolute;left:0px;top:0px;z-index:99;color:#ffffff;background-color:#000000;opacity:0.5;">
-    </div>
+    <div
+      id="log"
+      style="position:absolute;left:0px;top:0px;z-index:99;color:#ffffff;background-color:#000000;opacity:0.5;"
+    ></div>
     <script>
       //uncomment to move logs to html for debugging devices
       /*
@@ -82,24 +98,23 @@
       })();
       */
 
-      var currentFirstLoaderValue = 15
-      var moveLoader = function(){
-        var firstLoader = document.getElementById('firstLoaderBar')
-        if(firstLoader){
-          if(parseInt(currentFirstLoaderValue)>=100){
-            currentFirstLoaderValue = "100%"
-            clearInterval(firstLoaderInterval)
-            return
+      var currentFirstLoaderValue = 15;
+      var moveLoader = function() {
+        var firstLoader = document.getElementById("firstLoaderBar");
+        if (firstLoader) {
+          if (parseInt(currentFirstLoaderValue) >= 100) {
+            currentFirstLoaderValue = "100%";
+            clearInterval(firstLoaderInterval);
+            return;
           }
-          firstLoader.style.width=currentFirstLoaderValue+"%"
-          currentFirstLoaderValue+=Math.random()*15
-        }else{
-          clearInterval(firstLoaderInterval)
+          firstLoader.style.width = currentFirstLoaderValue + "%";
+          currentFirstLoaderValue += Math.random() * 15;
+        } else {
+          clearInterval(firstLoaderInterval);
         }
-      }
-      var firstLoaderInterval = setInterval(moveLoader,250)
-      moveLoader()
+      };
+      var firstLoaderInterval = setInterval(moveLoader, 250);
+      moveLoader();
     </script>
-
   </body>
 </html>
