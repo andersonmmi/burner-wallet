@@ -40,7 +40,7 @@ import Vendors from "./components/Vendors";
 import RecentTransactions from "./components/RecentTransactions";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
-import burnerlogo from "./burnerwallet.png";
+// import burnerlogo from "./burnerwallet.png";
 import BurnWallet from "./components/BurnWallet";
 import Exchange from "./components/Exchange";
 import Bottom from "./components/Bottom";
@@ -50,11 +50,12 @@ import namehash from "eth-ens-namehash";
 //https://github.com/lesnitsky/react-native-webview-messaging/blob/v1/examples/react-native/web/index.js
 import RNMessageChannel from "react-native-webview-messaging";
 
-import bufficorn from "./bufficorn.png";
-import cypherpunk from "./cypherpunk.png";
+// import bufficorn from "./bufficorn.png";
+// import cypherpunk from "./cypherpunk.png";
 import eth from "./ethereum.png";
-import dai from "./dai.jpg";
-import xdai from "./xdai.jpg";
+import evxpIcon from "./evxpIcon.jpg";
+import evxpLogo from './Everex-EVX-icon.png';
+// import xdai from "./xdai.jpg";
 
 let base64url = require("base64url");
 const EthCrypto = require("eth-crypto");
@@ -70,7 +71,7 @@ let ERC20TOKEN;
 let ERC20VENDOR;
 let ERC20IMAGE;
 let ERC20NAME;
-let LOADERIMAGE = burnerlogo;
+let LOADERIMAGE = evxpLogo;
 let HARDCODEVIEW; // = "loader"// = "receipt"
 
 let mainStyle = {
@@ -79,8 +80,8 @@ let mainStyle = {
   backgroundImage: "linear-gradient(#292929, #191919)",
   backgroundColor: "#191919",
   hotColor: "#F69E4D",
-  mainColorAlt: "#fa7d36",
-  mainColor: "#F76B1C"
+  mainColorAlt: "#aabcd7",
+  mainColor: "#354f9c"
 };
 
 let title = i18n.t("app_name");
@@ -95,9 +96,12 @@ if (
   window.location.hostname.indexOf("localhost") >= 0 ||
   window.location.hostname.indexOf("10.0.0.107") >= 0
 ) {
-  XDAI_PROVIDER = "http://localhost:8545";
-  WEB3_PROVIDER = "http://localhost:8545";
-  CLAIM_RELAY = "http://localhost:18462";
+  // XDAI_PROVIDER = "http://localhost:8545";
+  // WEB3_PROVIDER = "http://localhost:8545";
+  XDAI_PROVIDER = POA_XDAI_NODE;
+  WEB3_PROVIDER = POA_XDAI_NODE;
+  // CLAIM_RELAY = "http://localhost:18462";
+  CLAIM_RELAY = "https://x.xdai.io";
   if (true) {
     ERC20NAME = false;
     ERC20TOKEN = false;
@@ -106,10 +110,10 @@ if (
     ERC20NAME = "BUFF";
     ERC20VENDOR = "VendingMachine";
     ERC20TOKEN = "ERC20Vendable";
-    ERC20IMAGE = bufficorn;
+    // ERC20IMAGE = bufficorn;
     XDAI_PROVIDER = "http://localhost:8545";
     WEB3_PROVIDER = "http://localhost:8545";
-    LOADERIMAGE = bufficorn;
+    // LOADERIMAGE = bufficorn;
   }
 } else if (window.location.hostname.indexOf("s.xdai.io") >= 0) {
   WEB3_PROVIDER = POA_XDAI_NODE;
@@ -130,63 +134,67 @@ if (
   WEB3_PROVIDER = POA_XDAI_NODE;
   CLAIM_RELAY = "https://x.xdai.io";
   ERC20TOKEN = false;
+} else if (window.location.hostname.indexOf("demo") >= 0) {
+  WEB3_PROVIDER = POA_XDAI_NODE;
+  CLAIM_RELAY = "https://x.xdai.io";
+  ERC20TOKEN = false;
 } else if (window.location.hostname.indexOf("buffidai") >= 0) {
   WEB3_PROVIDER = POA_XDAI_NODE;
   CLAIM_RELAY = "https://x.xdai.io";
   ERC20NAME = "BUFF";
   ERC20VENDOR = "VendingMachine";
   ERC20TOKEN = "ERC20Vendable";
-  ERC20IMAGE = bufficorn;
-  LOADERIMAGE = bufficorn;
+  // ERC20IMAGE = bufficorn;
+  // LOADERIMAGE = bufficorn;
 } else if (window.location.hostname.indexOf("burnerwallet.io") >= 0) {
   WEB3_PROVIDER = POA_XDAI_NODE;
   CLAIM_RELAY = "https://x.xdai.io";
   ERC20NAME = "BURN";
   ERC20VENDOR = "BurnerVendor";
   ERC20TOKEN = "Burner";
-  ERC20IMAGE = cypherpunk;
-  LOADERIMAGE = cypherpunk;
+  // ERC20IMAGE = cypherpunk;
+  // LOADERIMAGE = cypherpunk;
 } else if (window.location.hostname.indexOf("burnerwithrelays") >= 0) {
   WEB3_PROVIDER = "https://dai.poa.network";
   ERC20NAME = false;
   ERC20TOKEN = false;
   ERC20IMAGE = false;
-}
-
-if (ERC20NAME == "BUFF") {
-  mainStyle.backgroundImage = "linear-gradient(#540d48, #20012d)";
-  mainStyle.backgroundColor = "#20012d";
-  mainStyle.mainColor = "#b6299e";
-  mainStyle.mainColorAlt = "#de3ec3";
-  title = "BuffiDai.io";
-  titleImage = (
-    <img
-      src={bufficorn}
-      style={{
-        maxWidth: 50,
-        maxHeight: 50,
-        marginRight: 15,
-        marginTop: -10
-      }}
-    />
-  );
-} else if (ERC20NAME == "BURN") {
-  mainStyle.backgroundImage = "linear-gradient(#4923d8, #6c0664)";
-  mainStyle.backgroundColor = "#6c0664";
-  mainStyle.mainColor = "#e72da3";
-  mainStyle.mainColorAlt = "#f948b8";
-  title = "Burner";
-  titleImage = (
-    <img
-      src={cypherpunk}
-      style={{
-        maxWidth: 50,
-        maxHeight: 50,
-        marginRight: 15,
-        marginTop: -10
-      }}
-    />
-  );
+// }
+//
+// if (ERC20NAME == "BUFF") {
+//   mainStyle.backgroundImage = "linear-gradient(#540d48, #20012d)";
+//   mainStyle.backgroundColor = "#20012d";
+//   mainStyle.mainColor = "#b6299e";
+//   mainStyle.mainColorAlt = "#de3ec3";
+//   title = "BuffiDai.io";
+//   titleImage = (
+//     <img
+//       src={bufficorn}
+//       style={{
+//         maxWidth: 50,
+//         maxHeight: 50,
+//         marginRight: 15,
+//         marginTop: -10
+//       }}
+//     />
+//   );
+// } else if (ERC20NAME == "BURN") {
+//   mainStyle.backgroundImage = "linear-gradient(#4923d8, #6c0664)";
+//   mainStyle.backgroundColor = "#6c0664";
+//   mainStyle.mainColor = "#e72da3";
+//   mainStyle.mainColorAlt = "#f948b8";
+//   title = "Burner";
+//   titleImage = (
+//     <img
+//       src={cypherpunk}
+//       style={{
+//         maxWidth: 50,
+//         maxHeight: 50,
+//         marginRight: 15,
+//         marginTop: -10
+//       }}
+//     />
+//   );
 }
 
 let innerStyle = {
@@ -235,6 +243,15 @@ let dollarDisplay = amount => {
 let interval;
 let intervalLong;
 
+/*
+    .,-:::::   :::      :::.     .::::::.  .::::::.
+  ,;;;'````'   ;;;      ;;`;;   ;;;`    ` ;;;`    `
+  [[[          [[[     ,[[ '[[, '[==/[[[[,'[==/[[[[,
+  $$$          $$'    c$$$cc$$$c  '''    $  '''    $
+  `88bo,__,o, o88oo,.__888   888,88b    dP 88b    dP
+    "YUMMMMMP"""""YUMMMYMM   ""`  "YMmMY"   "YMmMY"
+*/
+
 class App extends Component {
   constructor(props) {
     console.log(
@@ -261,14 +278,29 @@ class App extends Component {
       sendKey: "",
       alert: null,
       loadingTitle: "loading...",
-      title: title,
-      extraHeadroom: 0,
-      balance: 0.0,
       vendors: {},
       ethprice: 0.0,
-      hasUpdateOnce: false,
+      selectedBadge: false,
+      // RNMessageChannel
+      title: title,
+      extraHeadroom: 0,
+      possibleNewPrivateKey: null,
+      // cdm
+      mainnetweb3: null,
+      ensContract: null,
+      xdaiweb3: null,
+      daiContract: null,
+      claimId: null,
+      claimKey: null,
+      // poll
+      balance: 0.0,
       badges: {},
-      selectedBadge: false
+      gasBalance: null,
+      isAdmin: null,
+      isVendor: null,
+      hasUpdateOnce: false,
+      vendorObject: null,
+      products: null,
     };
     this.alertTimeout = null;
 
@@ -1198,6 +1230,16 @@ class App extends Component {
       });
     }
   }
+
+/*
+  :::::::..  .,:::::::::.    :::.:::::::-.  .,:::::: :::::::..
+  ;;;;``;;;; ;;;;''''`;;;;,  `;;; ;;,   `';,;;;;'''' ;;;;``;;;;
+   [[[,/[[['  [[cccc   [[[[[. '[[ `[[     [[ [[cccc   [[[,/[[['
+   $$$$$$c    $$""""   $$$ "Y$c$$  $$,    $$ $$""""   $$$$$$c
+   888b "88bo,888oo,__ 888    Y88  888_,o8P' 888oo,__ 888b "88bo,
+   MMMM   "W" """"YUMMMMMM     YM  MMMMP"`   """"YUMMMMMMM   "W"
+*/
+
   render() {
     let {
       web3,
@@ -1317,7 +1359,8 @@ class App extends Component {
       header = (
         <Header
           openScanner={this.openScanner.bind(this)}
-          network={this.state.network}
+          // network={this.state.network}
+          network={'EVXP'}
           total={totalBalance}
           ens={this.state.ens}
           title={this.state.title}
@@ -1331,6 +1374,15 @@ class App extends Component {
         />
       );
     }
+
+/*
+  :::::::..  .,::::::::::::::::::...    ::::::::::.. :::.    :::.
+  ;;;;``;;;; ;;;;'''';;;;;;;;'''';;     ;;;;;;;``;;;;`;;;;,  `;;;
+   [[[,/[[['  [[cccc      [[    [['     [[[ [[[,/[[['  [[[[[. '[[
+   $$$$$$c    $$""""      $$    $$      $$$ $$$$$$c    $$$ "Y$c$$
+   888b "88bo,888oo,__    88,   88    .d888 888b "88bo,888    Y88
+   MMMM   "W" """"YUMMM   MMM    "YmmMMMM"" MMMM   "W" MMM     YM
+*/
 
     return (
       <I18nextProvider i18n={i18n}>
@@ -1573,10 +1625,10 @@ class App extends Component {
                   let defaultBalanceDisplay = (
                     <div>
                       <Balance
-                        icon={xdai}
+                        icon={evxpIcon}
                         selected={false}
-                        text={"xdai"}
-                        amount={this.state.xdaiBalance}
+                        text={"EVXP"}
+                        amount={this.state.daiBalance}
                         address={account}
                         dollarDisplay={dollarDisplay}
                       />
@@ -1616,6 +1668,15 @@ class App extends Component {
                     );
                   }
 
+/*
+   .::::::..::    .   .::::::::::::::::::  .,-:::::   ::   .:
+  ;;;`    `';;,  ;;  ;;;' ;;;;;;;;;;;'''',;;;'````'  ,;;   ;;,
+  '[==/[[[[,'[[, [[, [['  [[[     [[     [[[        ,[[[,,,[[[
+    '''    $  Y$c$$$c$P   $$$     $$     $$$        "$$$"""$$$
+   88b    dP   "88"888    888     88,    `88bo,__,o, 888   "88o
+    "YMmMY"     "M "M"    MMM     MMM      "YUMMMMMP"MMM    YMM
+*/
+
                   switch (view) {
                     case "main":
                       return (
@@ -1629,7 +1690,7 @@ class App extends Component {
                             {/*<Balance icon={xdai} selected={selected} text={"xDai"} amount={this.state.xdaiBalance} address={account} dollarDisplay={dollarDisplay}/>
                   <Ruler/>*/}
                             <Balance
-                              icon={dai}
+                              icon={evxpIcon}
                               selected={selected}
                               text={"EVXP"}
                               amount={this.state.daiBalance}
@@ -1840,7 +1901,7 @@ class App extends Component {
                               ensLookup={this.ensLookup.bind(this)}
                               ERC20TOKEN={ERC20TOKEN}
                               buttonStyle={buttonStyle}
-                              balance={balance}
+                              balance={this.state.daiBalance}
                               web3={this.state.web3}
                               address={account}
                               send={send}
@@ -2192,8 +2253,8 @@ class App extends Component {
                             />
                             <Exchange
                               eth={eth}
-                              dai={dai}
-                              xdai={xdai}
+                              dai={evxpIcon}
+                              xdai={evxpIcon}
                               ERC20NAME={ERC20NAME}
                               ERC20IMAGE={ERC20IMAGE}
                               ERC20TOKEN={ERC20TOKEN}

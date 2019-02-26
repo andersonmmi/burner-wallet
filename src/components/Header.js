@@ -18,7 +18,7 @@ export  default ({openScanner, network, total, dollarDisplay, ens, title, titleI
 
   let moneyDisplay
   let blockieDisplay
-  if(typeof total == "undefined" || Number.isNaN(total)){
+  if(typeof total === "undefined" || Number.isNaN(total)){
     moneyDisplay = (
       <div style={{opacity:0.1,fontSize:28,paddingTop:15}}>
         connecting...
