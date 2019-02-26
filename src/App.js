@@ -270,13 +270,13 @@ class App extends Component {
     console.log("CACHED VIEW", view);
     super(props);
     this.state = {
-      web3: false,
+      web3: false, // set on line 2431
+      web3Provider: null,
       account: false,
       gwei: 1.1,
       view: view,
       sendLink: "",
       sendKey: "",
-      alert: null,
       loadingTitle: "loading...",
       vendors: {},
       ethprice: 0.0,
@@ -301,6 +301,34 @@ class App extends Component {
       hasUpdateOnce: false,
       vendorObject: null,
       products: null,
+      newPrivateKey: null,
+      ethBalance: null,
+      daiBalance: null,
+      xdaiBalance: null,
+      badgeBalance: null,
+      // dealWithPossibleNewPrivateKey
+      withdrawFromPrivateKey: null,
+      // newPrivateKey: null,
+      recentTxs: [],
+      transactionsByAddress: {},
+      fullRecentTxs: [],
+      fullTransactionsByAddress: {},
+      // ContractLoader
+      contracts: null,
+      customLoader: null,
+      // dapparatus
+      metaAccount: null,
+      parsingTheChain: null,
+      block: null,
+      loadedBlocksTop: null,
+      // ensLookup
+      sending: false,
+      fund: null,
+      claimed: false,
+      //
+      reciept: null,
+      alert: null,
+
     };
     this.alertTimeout = null;
 
@@ -1899,7 +1927,8 @@ class App extends Component {
                               openScanner={this.openScanner.bind(this)}
                               scannerState={this.state.scannerState}
                               ensLookup={this.ensLookup.bind(this)}
-                              ERC20TOKEN={ERC20TOKEN}
+                              // ERC20TOKEN={ERC20TOKEN}
+                              daiContract={this.state.daiContract}
                               buttonStyle={buttonStyle}
                               balance={this.state.daiBalance}
                               web3={this.state.web3}
@@ -2412,6 +2441,7 @@ class App extends Component {
                   delete state.balance;
                 }
                 if (state.web3Provider) {
+                  // web3Provider: window.web3.currentProvider
                   state.web3 = new Web3(state.web3Provider);
                   this.setState(state, () => {
                     //console.log("state set:",this.state)
