@@ -12,6 +12,7 @@ export default class SendToAddress extends React.Component {
 
   constructor(props) {
     super(props);
+
     let startAmount = props.amount
     if(props.scannerState) startAmount = props.scannerState.amount
     if(!startAmount) {
@@ -19,6 +20,7 @@ export default class SendToAddress extends React.Component {
     }else{
       cookie.save('sendToStartAmount', startAmount, { path: '/', maxAge: 60 })
     }
+    
     let startMessage= props.message
     if(props.scannerState) startMessage = props.scannerState.message
     if(!startMessage) {
@@ -148,7 +150,6 @@ export default class SendToAddress extends React.Component {
     let { toAddress, amount } = this.state;
     let {ERC20TOKEN} = this.props
 
-
     if(this.state.canSend){
       if(ERC20TOKEN){
         console.log("this is a token")
@@ -175,7 +176,7 @@ export default class SendToAddress extends React.Component {
         setTimeout(()=>{window.scrollTo(0,0)},60)
 
         console.log("web3",this.props.web3)
-        let txData
+        let txData;
         if(this.state.message){
           txData = this.props.web3.utils.utf8ToHex(this.state.message)
         }
@@ -237,7 +238,6 @@ export default class SendToAddress extends React.Component {
     if(this.state.extraMessage){
       messageText = this.state.extraMessage
     }
-
 
     let amountInputDisplay = (
       <input type="number" className="form-control" placeholder="0.00" value={this.state.amount}
