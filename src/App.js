@@ -99,7 +99,9 @@ if (
   // XDAI_PROVIDER = "http://localhost:8545";
   // WEB3_PROVIDER = "http://localhost:8545";
   XDAI_PROVIDER = POA_XDAI_NODE;
-  WEB3_PROVIDER = POA_XDAI_NODE;
+  // WEB3_PROVIDER = POA_XDAI_NODE;
+  WEB3_PROVIDER =
+    "https://mainnet.infura.io/v3/e0ea6e73570246bbb3d4bd042c4b5dac";
   // CLAIM_RELAY = "http://localhost:18462";
   CLAIM_RELAY = "https://x.xdai.io";
   if (true) {
@@ -135,7 +137,8 @@ if (
   CLAIM_RELAY = "https://x.xdai.io";
   ERC20TOKEN = false;
 } else if (window.location.hostname.indexOf("demo") >= 0) {
-  WEB3_PROVIDER = POA_XDAI_NODE;
+  WEB3_PROVIDER =
+    "https://mainnet.infura.io/v3/e0ea6e73570246bbb3d4bd042c4b5dac";
   CLAIM_RELAY = "https://x.xdai.io";
   ERC20TOKEN = false;
 } else if (window.location.hostname.indexOf("buffidai") >= 0) {
@@ -1352,8 +1355,8 @@ class App extends Component {
               if (ERC20TOKEN) {
                 state.nativeSend = state.send;
                 //delete state.send
-                state.send = tokenSend.bind(this);
               }
+              state.send = tokenSend.bind(this);
               console.log(state);
               this.setState(state);
             }}
@@ -1927,7 +1930,7 @@ class App extends Component {
                               openScanner={this.openScanner.bind(this)}
                               scannerState={this.state.scannerState}
                               ensLookup={this.ensLookup.bind(this)}
-                              // ERC20TOKEN={ERC20TOKEN}
+                              ERC20TOKEN={ERC20TOKEN}
                               daiContract={this.state.daiContract}
                               buttonStyle={buttonStyle}
                               balance={this.state.daiBalance}
@@ -2586,7 +2589,7 @@ class App extends Component {
 //<iframe id="galleassFrame" style={{zIndex:99,position:"absolute",left:0,top:0,width:800,height:600}} src="https://galleass.io" />
 
 async function tokenSend(to, value, gasLimit, txData, cb) {
-  let { account, web3 } = this.state;
+  // let { account, web3 } = this.state;
 
   console.log("tokenSend");
 
@@ -2613,23 +2616,26 @@ async function tokenSend(to, value, gasLimit, txData, cb) {
     console.log("sending with meta account:", this.state.metaAccount.address);
 
     let tx = {
-      to: this.state.contracts[ERC20TOKEN]._address,
+      // to: this.state.contracts[ERC20TOKEN]._address,
+      to: this.state.daiContract._address,
       value: 0,
       gas: setGasLimit,
       gasPrice: Math.round(this.state.gwei * 1010101010)
     };
-    if (data) {
-      tx.data = this.state.contracts[ERC20TOKEN].transferWithData(
-        to,
-        weiValue,
-        data
-      ).encodeABI();
-    } else {
-      tx.data = this.state.contracts[ERC20TOKEN].transfer(
+    // if (data) {
+    //   tx.data = this.state.contracts[ERC20TOKEN].transferWithData(
+    //     to,
+    //     weiValue,
+    //     data
+    //   ).encodeABI();
+    // } else {
+      // tx.data = this.state.contracts[ERC20TOKEN].transfer(
+      tx.data = this.state.daiContract.methods.transferFrom(
+        this.state.metaAccount.address,
         to,
         weiValue
       ).encodeABI();
-    }
+    // }
     console.log("TX SIGNED TO METAMASK:", tx);
     this.state.web3.eth.accounts
       .signTransaction(tx, this.state.metaAccount.privateKey)
@@ -2670,24 +2676,27 @@ async function tokenSend(to, value, gasLimit, txData, cb) {
     }
     let txObject = {
       from: this.state.account,
-      to: this.state.contracts[ERC20TOKEN]._address,
+      // to: this.state.contracts[ERC20TOKEN]._address,
+      to: this.state.daiContract._address,
       value: 0,
       gas: setGasLimit,
       gasPrice: Math.round(this.state.gwei * 1010101010)
     };
 
-    if (data) {
-      txObject.data = this.state.contracts[ERC20TOKEN].transferWithData(
-        to,
-        weiValue,
-        data
-      ).encodeABI();
-    } else {
-      txObject.data = this.state.contracts[ERC20TOKEN].transfer(
+    // if (data) {
+    //   txObject.data = this.state.contracts[ERC20TOKEN].transferWithData(
+    //     to,
+    //     weiValue,
+    //     data
+    //   ).encodeABI();
+    // } else {
+      // txObject.data = this.state.contracts[ERC20TOKEN].transfer(
+      txObject.data = this.state.daiContract.methods.transferFrom(
+        this.state.metaAccount.address,
         to,
         weiValue
       ).encodeABI();
-    }
+    // }
 
     console.log("sending with injected web3 account", txObject);
     result = await this.state.web3.eth.sendTransaction(txObject);
