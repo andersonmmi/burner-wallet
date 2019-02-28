@@ -84,7 +84,7 @@ let mainStyle = {
   mainColor: "#354f9c"
 };
 
-let title = i18n.t("app_name");
+let title = i18n.t("Everex Demo Wallet");
 let titleImage = (
   <span style={{ paddingRight: 20, paddingLeft: 16 }}>
     <i className="fas fa-fire" />
