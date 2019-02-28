@@ -2433,7 +2433,8 @@ class App extends Component {
               config={{
                 DEBUG: false,
                 hide: true,
-                requiredNetwork: ["Unknown", "xDai"],
+                // requiredNetwork: ["Unknown", "xDai"],
+                requiredNetwork: ["Mainnet"],
                 metatxAccountGenerator: false
               }}
               //used to pass a private key into Dapparatus
