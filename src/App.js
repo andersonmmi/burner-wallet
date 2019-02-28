@@ -55,6 +55,7 @@ import RNMessageChannel from "react-native-webview-messaging";
 import eth from "./ethereum.png";
 import evxpIcon from "./evxpIcon.jpg";
 import evxpLogo from './Everex-EVX-icon.png';
+import usdIcon from './dollar-sign-vector.jpg';
 // import xdai from "./xdai.jpg";
 
 let base64url = require("base64url");
@@ -1719,8 +1720,6 @@ class App extends Component {
                           >
                             {extraTokens}
 
-                            {/*<Balance icon={xdai} selected={selected} text={"xDai"} amount={this.state.xdaiBalance} address={account} dollarDisplay={dollarDisplay}/>
-                  <Ruler/>*/}
                             <Balance
                               icon={evxpIcon}
                               selected={selected}
@@ -1742,6 +1741,15 @@ class App extends Component {
                               dollarDisplay={dollarDisplay}
                             />
                             <Ruler />
+                            <Balance
+                              icon={usdIcon}
+                              selected={selected}
+                              text={"USD"}
+                              amount={this.state.daiBalance}
+                              address={account}
+                              dollarDisplay={dollarDisplay}
+                            />
+                            <Ruler/>
                             {badgeDisplay}
 
                             <MainCard
