@@ -767,9 +767,10 @@ class App extends Component {
       //}, false)
     }
   }
-  checkNetwork() {
+  checkNetwork(targetNetwork) {
     let { network } = this.state;
-    return network === "xDai" || network === "Unknown";
+    // return network === "xDai" || network === "Unknown";
+    return network === targetNetwork;
   }
   checkClaim(tx, contracts) {
     //check if we are trying to claim
@@ -1289,7 +1290,7 @@ class App extends Component {
     } = this.state;
 
     let networkOverlay = "";
-    if (web3 && !this.checkNetwork() && view != "exchange") {
+    if (window.web3 && !this.checkNetwork('Mainnet') && view != "exchange") {
       networkOverlay = (
         <div>
           <input
