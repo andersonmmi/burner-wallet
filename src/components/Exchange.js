@@ -2368,7 +2368,7 @@ export default class Exchange extends React.Component {
                       "" + deadline
                     ),
                     amountOfEth,
-                    "Sending funds to exchange...",
+                    "Converting to stable token",
                     receipt => {
                       this.setState({
                         amount: "",
