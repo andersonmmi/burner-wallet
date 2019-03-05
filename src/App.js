@@ -54,8 +54,8 @@ import RNMessageChannel from "react-native-webview-messaging";
 // import cypherpunk from "./cypherpunk.png";
 import eth from "./ethereum.png";
 import evxpIcon from "./evxpIcon.jpg";
-import evxpLogo from './Everex-EVX-icon.png';
-import usdIcon from './dollar-sign-vector.jpg';
+import evxpLogo from "./Everex-EVX-icon.png";
+import usdIcon from "./dollar-sign-vector.jpg";
 // import xdai from "./xdai.jpg";
 
 let base64url = require("base64url");
@@ -163,42 +163,42 @@ if (
   ERC20NAME = false;
   ERC20TOKEN = false;
   ERC20IMAGE = false;
-// }
-//
-// if (ERC20NAME == "BUFF") {
-//   mainStyle.backgroundImage = "linear-gradient(#540d48, #20012d)";
-//   mainStyle.backgroundColor = "#20012d";
-//   mainStyle.mainColor = "#b6299e";
-//   mainStyle.mainColorAlt = "#de3ec3";
-//   title = "BuffiDai.io";
-//   titleImage = (
-//     <img
-//       src={bufficorn}
-//       style={{
-//         maxWidth: 50,
-//         maxHeight: 50,
-//         marginRight: 15,
-//         marginTop: -10
-//       }}
-//     />
-//   );
-// } else if (ERC20NAME == "BURN") {
-//   mainStyle.backgroundImage = "linear-gradient(#4923d8, #6c0664)";
-//   mainStyle.backgroundColor = "#6c0664";
-//   mainStyle.mainColor = "#e72da3";
-//   mainStyle.mainColorAlt = "#f948b8";
-//   title = "Burner";
-//   titleImage = (
-//     <img
-//       src={cypherpunk}
-//       style={{
-//         maxWidth: 50,
-//         maxHeight: 50,
-//         marginRight: 15,
-//         marginTop: -10
-//       }}
-//     />
-//   );
+  // }
+  //
+  // if (ERC20NAME == "BUFF") {
+  //   mainStyle.backgroundImage = "linear-gradient(#540d48, #20012d)";
+  //   mainStyle.backgroundColor = "#20012d";
+  //   mainStyle.mainColor = "#b6299e";
+  //   mainStyle.mainColorAlt = "#de3ec3";
+  //   title = "BuffiDai.io";
+  //   titleImage = (
+  //     <img
+  //       src={bufficorn}
+  //       style={{
+  //         maxWidth: 50,
+  //         maxHeight: 50,
+  //         marginRight: 15,
+  //         marginTop: -10
+  //       }}
+  //     />
+  //   );
+  // } else if (ERC20NAME == "BURN") {
+  //   mainStyle.backgroundImage = "linear-gradient(#4923d8, #6c0664)";
+  //   mainStyle.backgroundColor = "#6c0664";
+  //   mainStyle.mainColor = "#e72da3";
+  //   mainStyle.mainColorAlt = "#f948b8";
+  //   title = "Burner";
+  //   titleImage = (
+  //     <img
+  //       src={cypherpunk}
+  //       style={{
+  //         maxWidth: 50,
+  //         maxHeight: 50,
+  //         marginRight: 15,
+  //         marginTop: -10
+  //       }}
+  //     />
+  //   );
 }
 
 let innerStyle = {
@@ -331,8 +331,7 @@ class App extends Component {
       claimed: false,
       //
       reciept: null,
-      alert: null,
-
+      alert: null
     };
     this.alertTimeout = null;
 
@@ -1264,7 +1263,7 @@ class App extends Component {
     }
   }
 
-/*
+  /*
   :::::::..  .,:::::::::.    :::.:::::::-.  .,:::::: :::::::..
   ;;;;``;;;; ;;;;''''`;;;;,  `;;; ;;,   `';,;;;;'''' ;;;;``;;;;
    [[[,/[[['  [[cccc   [[[[[. '[[ `[[     [[ [[cccc   [[[,/[[['
@@ -1291,10 +1290,10 @@ class App extends Component {
     } = this.state;
 
     let networkOverlay = "";
-    if (window.web3 && !this.checkNetwork('Mainnet') && view != "exchange") {
+    if (window.web3 && !this.checkNetwork("Mainnet") && view != "exchange") {
       networkOverlay = (
         <div>
-          <input
+          {/* <input
             style={{
               zIndex: 13,
               position: "absolute",
@@ -1315,7 +1314,7 @@ class App extends Component {
               maxHeight: 370
             }}
             src={customRPCHint}
-          />
+          /> */}
         </div>
       );
     }
@@ -1393,7 +1392,7 @@ class App extends Component {
         <Header
           openScanner={this.openScanner.bind(this)}
           // network={this.state.network}
-          network={'EVXP'}
+          network={"BLOCX"}
           total={totalBalance}
           ens={this.state.ens}
           title={this.state.title}
@@ -1408,7 +1407,7 @@ class App extends Component {
       );
     }
 
-/*
+    /*
   :::::::..  .,::::::::::::::::::...    ::::::::::.. :::.    :::.
   ;;;;``;;;; ;;;;'''';;;;;;;;'''';;     ;;;;;;;``;;;;`;;;;,  `;;;
    [[[,/[[['  [[cccc      [[    [['     [[[ [[[,/[[['  [[[[[. '[[
@@ -1701,7 +1700,7 @@ class App extends Component {
                     );
                   }
 
-/*
+                  /*
    .::::::..::    .   .::::::::::::::::::  .,-:::::   ::   .:
   ;;;`    `';;,  ;;  ;;;' ;;;;;;;;;;;'''',;;;'````'  ,;;   ;;,
   '[==/[[[[,'[[, [[, [['  [[[     [[     [[[        ,[[[,,,[[[
@@ -1749,7 +1748,7 @@ class App extends Component {
                               address={account}
                               dollarDisplay={dollarDisplay}
                             />
-                            <Ruler/>
+                            <Ruler />
                             {badgeDisplay}
 
                             <MainCard
@@ -2639,12 +2638,10 @@ async function tokenSend(to, value, gasLimit, txData, cb) {
     //     data
     //   ).encodeABI();
     // } else {
-      // tx.data = this.state.contracts[ERC20TOKEN].transfer(
-      tx.data = this.state.daiContract.methods.transferFrom(
-        this.state.metaAccount.address,
-        to,
-        weiValue
-      ).encodeABI();
+    // tx.data = this.state.contracts[ERC20TOKEN].transfer(
+    tx.data = this.state.daiContract.methods
+      .transferFrom(this.state.metaAccount.address, to, weiValue)
+      .encodeABI();
     // }
     console.log("TX SIGNED TO METAMASK:", tx);
     this.state.web3.eth.accounts
@@ -2700,12 +2697,10 @@ async function tokenSend(to, value, gasLimit, txData, cb) {
     //     data
     //   ).encodeABI();
     // } else {
-      // txObject.data = this.state.contracts[ERC20TOKEN].transfer(
-      txObject.data = this.state.daiContract.methods.transferFrom(
-        this.state.metaAccount.address,
-        to,
-        weiValue
-      ).encodeABI();
+    // txObject.data = this.state.contracts[ERC20TOKEN].transfer(
+    txObject.data = this.state.daiContract.methods
+      .transferFrom(this.state.metaAccount.address, to, weiValue)
+      .encodeABI();
     // }
 
     console.log("sending with injected web3 account", txObject);
